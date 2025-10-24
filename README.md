@@ -42,10 +42,15 @@ Por isso, optamos pelo cartão SD (microSD), que o simulador suporta de forma es
 ## 📁 Estrutura de pastas
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+
     <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como diagramas de arquitetura ou prints do dashboard.
+    
     <b>codigo_esp32</b>: aqui está o código-fonte em C++ (formato .ino) para ser utilizado no Wokwi ou Arduino IDE.
+    
     <b>dashboard_nodered</b>: aqui está o arquivo .json de exportação do fluxo do Node-RED.
+    
     <b>relatorios</b>: aqui estão os relatórios descritivos da Parte 1 (fluxo de funcionamento e resiliência) e Parte 2 (comunicação MQTT e dashboard).
+    
     <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
 ## 🔧 Como executar o código
@@ -71,22 +76,22 @@ Acesse o projeto com todas as etapas de hardware simuladas: 👉 https://wokwi.c
 ## 🧪 Etapas Realizadas 
 ### 🔹 PARTE 1 – Armazenamento e processamento local (Edge Computing):
 
-    Desenvolvimento da aplicação no Wokwi com ESP32.
-    Leitura de 3 sensores/entradas distintas (DHT22, MPU6050 e Botão para BPM).
-    Adaptação (SPIFFS/SD): Uso de Cartão SD (microSD) para armazenamento local, motivada pelas limitações de emulação do SPIFFS no Wokwi.
-    Simulação de conectividade Wi-Fi via Chave Deslizante (ONLINE/OFFLINE).
-    Implementação de lógica de resiliência offline (salva no SD) e sincronização (envia dados ao ficar online e limpa o buffer).
-    Inclusão de Alerta Local (LED) para condições críticas (Temp > 38 °C ou BPM > 120).
+Desenvolvimento da aplicação no Wokwi com ESP32.
+Leitura de 3 sensores/entradas distintas (DHT22, MPU6050 e Botão para BPM).
+Adaptação (SPIFFS/SD): Uso de Cartão SD (microSD) para armazenamento local, motivada pelas limitações de emulação do SPIFFS no Wokwi.
+Simulação de conectividade Wi-Fi via Chave Deslizante (ONLINE/OFFLINE).
+Implementação de lógica de resiliência offline (salva no SD) e sincronização (envia dados ao ficar online e limpa o buffer).
+Inclusão de Alerta Local (LED) para condições críticas (Temp > 38 °C ou BPM > 120).
 
 ### 🔹 PARTE 2 – Transmissão para nuvem e visualização (Fog/Cloud Computing):
 
-    Envio de dados do ESP32 para o broker HiveMQ Cloud via protocolo MQTT (publicações a cada 3 segundos).
-    Criação de um dashboard no Node-RED (FlowFuse) para exibição em tempo real.
-    Componentes do Dashboard:
-        chart: Exibe a variação dos batimentos cardíacos (BPM).
-        gauge: Mostra a temperatura corporal.
-        text: Mostra o status atual (“Normal” ou “⚠ ALERTA”).
-    Implementação de lógica de alerta no dashboard (ex: bpm = 130 ou temp = 39.2).
+Envio de dados do ESP32 para o broker HiveMQ Cloud via protocolo MQTT (publicações a cada 3 segundos).
+Criação de um dashboard no Node-RED (FlowFuse) para exibição em tempo real.
+Componentes do Dashboard:
+    chart: Exibe a variação dos batimentos cardíacos (BPM).
+    gauge: Mostra a temperatura corporal.
+    text: Mostra o status atual (“Normal” ou “⚠ ALERTA”).
+Implementação de lógica de alerta no dashboard (ex: bpm = 130 ou temp = 39.2).
 
 ## 🗃 Histórico de lançamentos
 
