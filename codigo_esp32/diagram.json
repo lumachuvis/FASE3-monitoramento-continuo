@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "Priscilla Garcia de Oliveira (Pri Garcia)",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 115.2, "left": 110.44, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -95.7,
+      "left": 100.2,
+      "attrs": { "temperature": "39.5", "humidity": "44.5" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 278.5,
+      "left": -3.3,
+      "rotate": 270,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 4.4, "left": 185.5, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -61.2, "left": 215, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 24,
+      "left": 210.65,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 128.62, "left": 280.72, "attrs": {} },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": 249.83, "left": 259.27, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0", "h-76.8" ] ],
+    [ "sw1:1", "esp:3V3", "red", [ "v28.8", "h-67.2" ] ],
+    [ "led1:A", "r1:1", "#8f4814", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "imu1:VCC", "esp:3V3", "red", [ "v-9.6", "h-211.27" ] ],
+    [ "imu1:GND", "esp:GND.2", "black", [ "v-38.4", "h-95.92", "v48" ] ],
+    [ "imu1:SDA", "esp:21", "green", [ "v-19.2", "h-67.12", "v86.4" ] ],
+    [ "imu1:SCL", "esp:22", "gold", [ "v-28.8", "h-57.52", "v57.6" ] ],
+    [ "sd1:DO", "esp:19", "purple", [ "h19.2", "v-9.49" ] ],
+    [ "sd1:GND", "esp:GND.3", "black", [ "h28.8", "v-9.49" ] ],
+    [ "sd1:SCK", "esp:18", "purple", [ "h9.6", "v-67.21" ] ],
+    [ "sd1:VCC", "esp:3V3", "red", [ "h28.8", "v48.14", "h-288", "v-201.6" ] ],
+    [ "sd1:DI", "esp:23", "purple", [ "h9.6", "v28.71", "h-115.2", "v-182.4" ] ],
+    [ "esp:5", "sd1:CS", "purple", [ "h163.2", "v96" ] ],
+    [ "btn1:1.r", "esp:25", "blue", [ "v0" ] ],
+    [ "btn1:2.r", "esp:GND.1", "black", [ "v0" ] ],
+    [ "sw1:2", "esp:26", "cyan", [ "v57.6", "h-95.9", "v124.8" ] ],
+    [ "dht1:SDA", "esp:14", "green", [ "v57.6", "h-38.3", "v172.8" ] ],
+    [ "r1:2", "esp:4", "#8f4814", [ "h0", "v200.4" ] ],
+    [ "sw1:3", "esp:GND.2", "black", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v38.4", "h-48", "v211.2" ] ]
+  ],
+  "dependencies": {
+    "mpu6050_tockn": "latest",
+    "arduinojson": "latest",
+    "pubsubclient": "latest",
+    "dht-sensor-library": "latest"
+  }
+}

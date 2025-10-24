@@ -1,0 +1,10 @@
+# Wokwi Library List
+# See https://docs.wokwi.com/guides/libraries
+
+# Automatically added based on includes:
+
+Adafruit MPU6050
+MPU6050_tockn
+PubSubClient
+ArduinoJson
+DHT sensor library for ESPx
