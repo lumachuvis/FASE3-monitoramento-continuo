@@ -26,14 +26,19 @@
 ## 📜 Descrição
 
 Implementação das Partes 1 e 2 do projeto CardioIA, focado na integração de conceitos de IoT, computação em nuvem (Cloud) e Edge/Fog Computing. Este projeto foi desenvolvido para a disciplina "Capítulo 1 – CardioIA Conectada: IoT e Visualização de Dados para Saúde Digital" do curso de Inteligência Artificial (3º Semestre) da FIAP.
+
 Nesta fase, desenvolvemos um protótipo funcional que simula um sistema vestível de monitoramento cardíaco. A solução é capaz de capturar sinais vitais simulados, armazenar e processar informações localmente (Edge Computing), transmitir os dados para a nuvem via MQTT e exibir resultados em dashboards interativos (Node-RED).
 
 ## 📝 Sobre o Projeto
 
 Foram utilizados dados simulados de sensores no ambiente Wokwi:
+
     DHT22: Sensor para medição de temperatura e umidade, representando uma medição ambiental próxima ao paciente.
+    
     MPU6050: Acelerômetro e Giroscópio para detectar movimento e atividade (ex: esforço físico).
+    
     Botão (Push Button): Usado para simular manualmente os batimentos cardíacos (BPM). O sistema conta os cliques por janela de 10s e converte para BPM.
+    
     Chave Deslizante: Usada para simular manualmente o status da conectividade (ONLINE/OFFLINE).
 
 Observação Importante (SPIFFS vs. Cartão SD): A orientação inicial previa o uso do SPIFFS/LittleFS para o armazenamento em flash interna. Entretanto, no simulador Wokwi, essas partições não são emuladas de forma completa, gerando falhas de montagem e impedindo a escrita real.
@@ -43,15 +48,15 @@ Por isso, optamos pelo cartão SD (microSD), que o simulador suporta de forma es
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
-    <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como diagramas de arquitetura ou prints do dashboard.
+<b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como diagramas de arquitetura ou prints do dashboard.
     
-    <b>codigo_esp32</b>: aqui está o código-fonte em C++ (formato .ino) para ser utilizado no Wokwi ou Arduino IDE.
+<b>codigo_esp32</b>: aqui está o código-fonte em C++ (formato .ino) para ser utilizado no Wokwi ou Arduino IDE.
     
-    <b>dashboard_nodered</b>: aqui está o arquivo .json de exportação do fluxo do Node-RED.
+<b>dashboard_nodered</b>: aqui está o arquivo .json de exportação do fluxo do Node-RED.
     
-    <b>relatorios</b>: aqui estão os relatórios descritivos da Parte 1 (fluxo de funcionamento e resiliência) e Parte 2 (comunicação MQTT e dashboard).
+<b>relatorios</b>: aqui estão os relatórios descritivos da Parte 1 (fluxo de funcionamento e resiliência) e Parte 2 (comunicação MQTT e dashboard).
     
-    <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+<b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
 ## 🔧 Como executar o código
 ### ✅ Parte 1: Simulação no Wokwi (ESP32)
@@ -67,7 +72,7 @@ Acesse o projeto com todas as etapas de hardware simuladas: 👉 https://wokwi.c
     
 ### ☁️ Parte 2: Transmissão para Nuvem e Visualização (Node-RED)
 
-    Acesse sua instância do Node-RED (ex: via FlowFuse).
+Acesse sua instância do Node-RED (ex: via FlowFuse).
     Importe o fluxo disponível em dashboard_nodered/flow.json.
     Configure os nós "MQTT In" com as credenciais do seu broker (HiveMQ Cloud) e os tópicos corretos.
     Execute o código do ESP32 (com a lógica de publicação MQTT real, não apenas a simulação do monitor serial).
