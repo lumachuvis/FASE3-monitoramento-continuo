@@ -47,7 +47,6 @@ Por isso, optamos pelo cartão SD (microSD), que o simulador suporta de forma es
 ## 📁 Estrutura de pastas
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
-
 <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como diagramas de arquitetura ou prints do dashboard.
     
 <b>codigo_esp32</b>: aqui está o código-fonte em C++ (formato .ino) para ser utilizado no Wokwi ou Arduino IDE.
@@ -62,40 +61,62 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 ### ✅ Parte 1: Simulação no Wokwi (ESP32)
 
 Acesse o projeto com todas as etapas de hardware simuladas: 👉 https://wokwi.com/projects/445625615909410817
+
     Inicie a simulação.
+    
     Observe as conexões do DHT22, MPU6050, Botão, LED, Chave Deslizante e Módulo SD.
+    
     Use a Chave Deslizante para alternar entre os modos ONLINE e OFFLINE.
+    
     Observe o "Serial Monitor":
+    
         No modo OFFLINE, os dados são salvos no buffer do SD.
+        
         Ao mudar para ONLINE, o sistema "sincroniza" os dados (imprime no monitor) e limpa o buffer.
+        
     Pressione o Botão para simular BPM e teste os alertas (ex: BPM > 120 ou Temp > 38°C) para ver o LED de Alerta local acender.
     
 ### ☁️ Parte 2: Transmissão para Nuvem e Visualização (Node-RED)
 
 Acesse sua instância do Node-RED (ex: via FlowFuse).
+
     Importe o fluxo disponível em dashboard_nodered/flow.json.
+    
     Configure os nós "MQTT In" com as credenciais do seu broker (HiveMQ Cloud) e os tópicos corretos.
+    
     Execute o código do ESP32 (com a lógica de publicação MQTT real, não apenas a simulação do monitor serial).
+    
     Acesse a UI (User Interface) do Node-RED para visualizar os dados em tempo real.
 
 ## 🧪 Etapas Realizadas 
 ### 🔹 PARTE 1 – Armazenamento e processamento local (Edge Computing):
 
 Desenvolvimento da aplicação no Wokwi com ESP32.
+
 Leitura de 3 sensores/entradas distintas (DHT22, MPU6050 e Botão para BPM).
+
 Adaptação (SPIFFS/SD): Uso de Cartão SD (microSD) para armazenamento local, motivada pelas limitações de emulação do SPIFFS no Wokwi.
+
 Simulação de conectividade Wi-Fi via Chave Deslizante (ONLINE/OFFLINE).
+
 Implementação de lógica de resiliência offline (salva no SD) e sincronização (envia dados ao ficar online e limpa o buffer).
+
 Inclusão de Alerta Local (LED) para condições críticas (Temp > 38 °C ou BPM > 120).
 
 ### 🔹 PARTE 2 – Transmissão para nuvem e visualização (Fog/Cloud Computing):
 
 Envio de dados do ESP32 para o broker HiveMQ Cloud via protocolo MQTT (publicações a cada 3 segundos).
+
 Criação de um dashboard no Node-RED (FlowFuse) para exibição em tempo real.
+
 Componentes do Dashboard:
+
     chart: Exibe a variação dos batimentos cardíacos (BPM).
+    
     gauge: Mostra a temperatura corporal.
+    
     text: Mostra o status atual (“Normal” ou “⚠ ALERTA”).
+    
 Implementação de lógica de alerta no dashboard (ex: bpm = 130 ou temp = 39.2).
 
 ## 🗃 Histórico de lançamentos
