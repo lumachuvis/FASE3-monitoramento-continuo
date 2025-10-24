@@ -47,6 +47,7 @@ Por isso, optamos pelo cartão SD (microSD), que o simulador suporta de forma es
 ## 📁 Estrutura de pastas
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+
 <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como diagramas de arquitetura ou prints do dashboard.
     
 <b>codigo_esp32</b>: aqui está o código-fonte em C++ (formato .ino) para ser utilizado no Wokwi ou Arduino IDE.
