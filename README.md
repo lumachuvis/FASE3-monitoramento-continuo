@@ -79,6 +79,8 @@ Acesse o projeto com todas as etapas de hardware simuladas: 👉 https://wokwi.c
     
 ### ☁️ Parte 2: Transmissão para Nuvem e Visualização (Node-RED)
 
+Link para o projeto com todas as etapas de hardware simuladas: 👉 https://wokwi.com/projects/445726921184194561
+
 Acesse sua instância do Node-RED (ex: via FlowFuse).
 
     Importe o fluxo disponível em dashboard_nodered/flow.json.
