@@ -1,0 +1,4 @@
+PubSubClient
+ArduinoJson
+DHT sensor library
+MPU6050_tockn@1.5.2

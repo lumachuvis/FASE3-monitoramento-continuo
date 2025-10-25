@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "Pri",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 110, "left": 120, "attrs": {} },
+
+    { "type": "wokwi-dht22", "id": "dht1", "top": -95, "left": 100,
+      "attrs": { "temperature": "26.0", "humidity": "45.0" } },
+
+    { "type": "wokwi-pushbutton", "id": "btn1", "top": 280, "left": 0,
+      "rotate": 270, "attrs": { "color": "green", "xray": "1" } },
+
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 5, "left": 185, "attrs": {} },
+
+    { "type": "wokwi-led", "id": "led1", "top": -60, "left": 215, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 24, "left": 210.6, "rotate": 90,
+      "attrs": { "value": "220" } },
+
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 130, "left": 280, "attrs": {} }
+  ],
+
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+
+    ["dht1:VCC", "esp:3V3", "red", [ "v0", "h-80" ]],
+    ["dht1:GND", "esp:GND.1", "black", [ "v35", "h-50", "v210" ]],
+    ["dht1:SDA", "esp:14", "green", [ "v58", "h-38", "v174" ]],
+
+    ["btn1:1.r", "esp:25", "blue", [ "v0" ]],
+    ["btn1:2.r", "esp:GND.1", "black", [ "v0" ]],
+
+    ["sw1:1", "esp:3V3", "red", [ "v28", "h-68" ]],
+    ["sw1:2", "esp:26", "cyan", [ "v58", "h-96", "v125" ]],
+    ["sw1:3", "esp:GND.2", "black", [ "v0" ]],
+
+    ["led1:A", "r1:1", "#8f4814", [ "v0" ]],
+    ["led1:C", "esp:GND.2", "black", [ "v0" ]],
+    ["r1:2",  "esp:4", "#8f4814", [ "h0", "v200" ]],
+
+    ["imu1:VCC", "esp:3V3", "red", [ "v-10", "h-210" ]],
+    ["imu1:GND", "esp:GND.2", "black", [ "v-38", "h-96", "v48" ]],
+    ["imu1:SDA", "esp:21", "green", [ "v-20", "h-67", "v86" ]],
+    ["imu1:SCL", "esp:22", "gold",  [ "v-29", "h-58", "v58" ]]
+  ],
+
+  "dependencies": {},
+
+  "wifi": { "ssid": "Wokwi-GUEST", "password": "" },
+
+  "internet": {
+    "servers": [
+      { "host": "broker.hivemq.com", "port": 1883 }
+    ]
+  }
+}
